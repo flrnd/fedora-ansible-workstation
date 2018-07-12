@@ -1,5 +1,5 @@
-hosts: localhost
+- hosts: localhost
 become: true
 tasks:
-  name: Install htop
-  apt: name=htop
+  - name: Install zsh
+    apt: name=zsh
