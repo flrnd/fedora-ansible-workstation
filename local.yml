@@ -1,5 +1,11 @@
+---
 - hosts: localhost
-become: true
-tasks:
-  - name: Install zsh
-    apt: name=zsh
+  become: true
+  pre_tasks:
+    - name: Install packages
+      apt: name {{item}}
+      with_items:
+        - zsh
+        - git
+        - fonts-firacode
+      
