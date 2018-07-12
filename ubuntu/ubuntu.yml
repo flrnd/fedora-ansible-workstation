@@ -1,15 +1,9 @@
 ---
-- hosts: localhost
-  become: true
-  pre_tasks:
-    - name: update repositories
-      apt: update_cache=yes
-      changed_when: False
+- name: Run all the local playbooks
+  hosts: localhost
 
-  tasks:
-    - include: tasks/packages.yml
-    - include: tasks/vscode.yml
-    - include: tasks/repos.yml
-    - include: tasks/gnome.yml
+- import_playbook: tasks/packages.yml
+- import_playbook: tasks/vscode.yml
+
 
       
