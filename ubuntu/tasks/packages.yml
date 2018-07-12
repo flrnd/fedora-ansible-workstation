@@ -3,7 +3,6 @@
   with_items:
     - zsh
     - git
-    - npm
     - fonts-firacode
     - curl
     - deja-dup

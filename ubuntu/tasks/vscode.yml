@@ -1,0 +1,20 @@
+- name: Install Visual Studio Code
+  hosts: localhost
+  tasks:
+    - name: set up vscode repo
+      apt_repository:
+        repo="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" state=present filename=vscode
+        update_cache=yes
+
+    - name: upgrade all packages
+      package:
+        name: "*"
+        force_apt_get: True
+        state: latest
+        
+
+    - name: install vs code
+      apt:
+        name: code
+        state: present
+
