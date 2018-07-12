@@ -1,9 +1,30 @@
-- name: Install packages
-  apt: name={{item}}
-  with_items:
-    - zsh
-    - git
-    - fonts-firacode
-    - curl
-    - deja-dup
-    - google-chrome-stable
+---
+- name: Install Some packages
+  hosts: localhost
+  tasks:
+    - name: upgrade all packages
+      package:
+        name: "*"
+        force_apt_get: True
+        state: latest
+
+    - name: install packages
+      package: name={{ item }}
+               state=present
+      with_items:
+        - ack
+        - autoconf
+        - automake
+        - bison
+        - bzip2
+        - chrome-gnome-shell
+        - curl
+        - git
+        - htop
+        - tree
+        - util-linux
+        - vim
+        - xclip
+        - zsh
+        - fonts-firacode
+        - deja-dup
