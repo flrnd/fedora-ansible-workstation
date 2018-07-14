@@ -1,0 +1,42 @@
+- name: Install Visual Studio Code
+  hosts: localhost
+  become: True
+  become_user: root
+  tasks:
+    - name: set up vscode repo
+      yum_repository:
+        baseurl: https://packages.microsoft.com/yumrepos/vscode
+        description: Microsoft VS Code Repo
+        enabled: yes
+        gpgcheck: yes
+        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+        name: VisualStudioCode
+
+    - name: Upgrade all packages
+      package:
+        name: "*"
+        state: latest
+
+    - name: Install vs code
+      package:
+        name: code
+        state: present
+    
+    - name: Copy User settings.json
+      become: True
+      become_user: "{{ username }}"
+      copy: 
+        src=settings.json
+        dest=/home/{{ username }}/.config/Code/User/
+        force=yes
+      
+    - name: Install VS Code extensions
+      become: True
+      become_user: "{{ username }}"
+       
+      command: code --install-extension "{{ item }}"
+      with_items:
+        "{{ vscode_extensions }}"
+      register: vscode_result
+      changed_when: "'already installed' not in vscode_result.stdout"
+    

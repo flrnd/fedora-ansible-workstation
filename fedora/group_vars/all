@@ -1,0 +1,27 @@
+---
+  username: rvm
+  vscode_extensions:
+    - Equinusocio.vsc-material-theme
+    - HookyQR.minify
+    - MS-CEINTL.vscode-language-pack-es
+    - PeterJausovec.vscode-docker
+    - TimonVS.ReactSnippetsStandard
+    - Zignd.html-css-class-completion
+    - abusaidm.html-snippets
+    - akamud.vscode-theme-onedark
+    - andyyaldoo.vscode-json
+    - bagonaut.mongogo
+    - capaj.vscode-standardjs-snippets
+    - chenxsan.vscode-standardjs
+    - christian-kohler.npm-intellisense
+    - dbaeumer.vscode-eslint
+    - ecmel.vscode-html-css
+    - eg2.tslint
+    - eg2.vscode-npm-script
+    - felixfbecker.php-debug
+    - ikappas.phpcs
+    - mkaufman.HTMLHint
+    - ms-python.python
+    - msjsdiag.debugger-for-chrome
+    - redhat.vscode-yaml
+    - vscoss.vscode-ansible

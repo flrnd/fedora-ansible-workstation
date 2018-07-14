@@ -1,0 +1,38 @@
+---
+- name: Install packages
+  hosts: localhost
+  become: True
+  tasks:
+    - name: upgrade all packages
+      package:
+        name: "*"
+        state: latest
+
+    - name: install packages
+      package: name={{ item }}
+               state=present
+      with_items:
+        - ack
+        - autoconf
+        - automake
+        - bison
+        - bzip2
+        - chrome-gnome-shell
+        - curl
+        - dep
+        - gcc-c++
+        - git
+        - htop
+        - libtool
+        - libselinux-python
+        - libxml2-devel
+        - libyaml-devel
+        - llvm-static
+        - make
+        - patchlg
+        - rxvt-unicode-256color
+        - tmux
+        - tree
+        - util-linux-user
+        - vim
+        - copyq
