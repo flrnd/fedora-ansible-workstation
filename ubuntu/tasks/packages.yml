@@ -3,12 +3,15 @@
   hosts: localhost
   tasks:
     - name: upgrade all packages
+      become: True
+      become_user: root
       package:
         name: "*"
         force_apt_get: True
         state: latest
 
     - name: install packages
+      become: True
       package: name={{ item }}
                state=present
       with_items:
