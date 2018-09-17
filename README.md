@@ -2,5 +2,5 @@
 
 
 ```shell
-sudo ansible-pull -U https://github.com/modulado/ansible.git
+sudo ansible-pull -U https://github.com/flrnprz/ansible.git
 ```
