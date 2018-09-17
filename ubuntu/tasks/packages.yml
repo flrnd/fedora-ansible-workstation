@@ -23,17 +23,15 @@
         - chrome-gnome-shell
         - curl
         - dep
-        - gcc-c++
         - git
         - htop
         - libtool
         - make
         - tmux
         - tree
-        - util-linux-user
         - vim
         - copyq
-        - fonts-firacore
+        - fonts-firacode
         - git-core
         - powerline
         - zsh

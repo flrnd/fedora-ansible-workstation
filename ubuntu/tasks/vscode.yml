@@ -2,6 +2,8 @@
   hosts: localhost
   tasks:
     - name: set up vscode repo
+      become: True
+      become_user: root
       apt_repository:
         repo="deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" state=present filename=vscode
         update_cache=yes
