@@ -9,7 +9,10 @@
   tasks:
     - include: tasks/packages.yml
     - include: tasks/vscode.yml
-    - include: tasks/repos.yml
+    - include: tasks/extensions.yml
     - include: tasks/gnome.yml
+    - include: tasks/zsh.yml
+    - include: tasks/gchrome.yml
+    
 
       

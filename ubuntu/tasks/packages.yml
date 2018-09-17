@@ -19,12 +19,18 @@
         - bzip2
         - chrome-gnome-shell
         - curl
+        - dep
+        - gcc-c++
         - git
         - htop
+        - libtool
+        - make
+        - tmux
         - tree
-        - util-linux
+        - util-linux-user
         - vim
-        - xclip
+        - copyq
+        - fonts-firacore
+        - git-core
+        - powerline
         - zsh
-        - fonts-firacode
-        - deja-dup

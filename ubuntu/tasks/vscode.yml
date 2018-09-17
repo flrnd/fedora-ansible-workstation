@@ -11,10 +11,27 @@
         name: "*"
         force_apt_get: True
         state: latest
-        
 
     - name: install vs code
       apt:
         name: code
         state: present
+        
+    - name: Copy User settings.json
+      become: True
+      become_user: "{{ username }}"
+      copy: 
+        src=settings.json
+        dest=/home/{{ username }}/.config/Code/User/
+        force=yes
+      
+    - name: Install VS Code extensions
+      become: True
+      become_user: "{{ username }}"
+       
+      command: code --install-extension "{{ item }}"
+      with_items:
+        "{{ vscode_extensions }}"
+      register: vscode_result
+      changed_when: "'already installed' not in vscode_result.stdout"
 
