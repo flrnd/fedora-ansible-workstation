@@ -1,13 +1,10 @@
 ---
-  username: rvm
+  username: flrn 
   vscode_extensions:
     - abusaidm.html-snippets
     - andyyaldoo.vscode-json
     - attilabuti.vscode-mjml
-    - bagonaut.mongogo
     - bungcip.better-toml
-    - capaj.vscode-standardjs-snippets
-    - chenxsan.vscode-standardjs
     - christian-kohler.npm-intellisense
     - christian-kohler.path-intellisense
     - dariofuzinato.vue-peek
@@ -17,13 +14,7 @@
     - eg2.tslint
     - eg2.vscode-npm-script
     - esbenp.prettier-vscode
-    - felixfbecker.php-debug
-    - formulahendry.auto-close-tag
-    - formulahendry.auto-rename-tag
     - IBM.output-colorizer
-    - ikappas.phpcs
-    - mkaufman.HTMLHint
-    - MS-CEINTL.vscode-language-pack-es
     - ms-python.python
     - ms-vscode.Go
     - msjsdiag.debugger-for-chrome
