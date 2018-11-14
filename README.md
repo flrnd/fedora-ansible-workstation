@@ -2,13 +2,14 @@
 
 First of all, you'll need ansible [installed in your local machine](https://docs.ansible.com/ansible/2.5/installation_guide/intro_installation.html "Official ansible installation guide").
 
-#### commandline
-
-options:
-
--b (become)
--K (ask for become-password)
+#### Commandline
 
 ```shell
-$ ansible-playbook -bK localhost.yml
+$ ansible-pull -U https://github.com/flrnprz/ansible.git
+```
+
+###### Testing:
+
+```shell
+$ ansible-pull -U https://github.com/flrnprz/ansible.git --check
 ```
