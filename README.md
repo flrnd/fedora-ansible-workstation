@@ -12,5 +12,3 @@ options:
 ```shell
 $ ansible-playbook -bK localhost.yml
 ```
-
-
