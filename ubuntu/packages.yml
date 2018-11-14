@@ -20,9 +20,7 @@
         - automake
         - bison
         - bzip2
-        - chrome-gnome-shell
         - curl
-        - dep
         - git
         - htop
         - libtool
