@@ -1,9 +1,0 @@
-- name: Install arc theme
-  apt: name=arc-theme
-
-- name: Install psutil package
-  apt: name=python-psutil
-
-- name: Set GTK theme
-  become_user: rvm
-  dconf: key="/org/gnome/desktop/interface/gtk-theme" value="'Arc-Dark'"
