@@ -1,5 +1,5 @@
 ---
-- name: Set Up zsh
+- name: Set Up zsh and Oh My Zsh
   hosts: localhost
   become_user: "{{ username }}"
   tasks:
