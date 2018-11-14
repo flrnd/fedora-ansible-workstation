@@ -35,6 +35,7 @@
       when: zshrc.stat.exists
       copy: src=/home/{{ username }}/.zshrc
             dest=/home/{{ username }}/.zshrc-orig
+  
     - name: Run some shell commands to config prezto
       shell: |
         setopt EXTENDED_GLOB
@@ -42,6 +43,8 @@
           ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
         done
         exit 0
+      args:
+        executable: /bin/zsh
   
     - name: change user shell to zsh
       become: yes
