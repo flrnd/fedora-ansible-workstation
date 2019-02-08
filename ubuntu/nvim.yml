@@ -21,6 +21,6 @@
 
     - name: Create a symlink to ~/.config/nvim/init.vim
       file: path=/home/{{ username }}/.config/nvim/init.vim
-            src=/home/{{ username }}/src-hub/github.com/flrnprz/dotfiles/nvim/init.vim
+            src=/home/{{ username }}/src-hub/github.com/flrnprz/dotfiles/neovim/init.vim
             force=yes
             state=link
