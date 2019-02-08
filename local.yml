@@ -3,6 +3,7 @@
   hosts: localhost
 
 - import_playbook: ./ubuntu/packages.yml
+- import_playbook: ./ubuntu/nvim.yml
 - import_playbook: ./ubuntu/vscode.yml
 - import_playbook: ./ubuntu/extensions.yml
 - import_playbook: ./ubuntu/prezto.yml
