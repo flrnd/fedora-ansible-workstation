@@ -16,7 +16,7 @@
       file: path=/home/{{ username }}/src-hub
             state=directory
 
-    - name: clone prezto 
+    - name: clone prezto
       git: repo=https://github.com/sorin-ionescu/prezto.git
            dest=/home/{{ username }}/src-hub/prezto
            recursive=yes
@@ -35,7 +35,7 @@
       when: zshrc.stat.exists
       copy: src=/home/{{ username }}/.zshrc
             dest=/home/{{ username }}/.zshrc-orig
-  
+
     - name: Run some shell commands to config prezto
       shell: |
         setopt EXTENDED_GLOB
