@@ -12,13 +12,13 @@
         - powerline
         - zsh
 
-    - name: ensure the ~/src-hub directory is present
-      file: path=/home/{{ username }}/src-hub
+    - name: ensure the ~/src-hub/github.com/robbyrussell directory is present
+      file: path=/home/{{ username }}/src-hub/github.com/robbyrussell
             state=directory
 
     - name: clone oh-my-zsh
       git: repo=https://github.com/robbyrussell/oh-my-zsh.git
-           dest=/home/{{ username }}/src-hub/oh-my-zsh
+           dest=/home/{{ username }}/src-hub/github.com/robbyrussell/oh-my-zsh
            update=no
 
     - name: clone dircolors-solarized plugin
@@ -27,7 +27,7 @@
 
     - name: create symlink to oh-my-zsh
       file: path=/home/{{ username }}/.oh-my-zsh
-            src=/home/{{ username }}/src-hub/oh-my-zsh
+            src=/home/{{ username }}/src-hub/github.com/robbyrussell/oh-my-zsh
             state=link
 
     - name: check if .zshrc exists
