@@ -4,3 +4,5 @@
 
 - import_playbook: ./fedora/packages.yml
 - import_playbook: ./fedora/rpmfusion.yml
+- import_playbook: ./fedora/vscode.yml
+- import_playbook: ./fedora/dotfiles.yml
