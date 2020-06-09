@@ -1,7 +1,6 @@
 - name: Install Visual Studio Code
   hosts: localhost
-  become: True
-  become_user: root
+  become: yes
   tasks:
     - name: set up vscode repo
       yum_repository:
