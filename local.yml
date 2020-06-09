@@ -3,3 +3,4 @@
   hosts: localhost
 
 - import_playbook: ./fedora/packages.yml
+- import_playbook: ./fedora/rpmfusion.yml
