@@ -29,6 +29,7 @@
             state=link
 
     - name: set zsh as default shell
+      become: true
       user:
         name: "{{ ansible_user_id }}"
         shell: /usr/bin/zsh
