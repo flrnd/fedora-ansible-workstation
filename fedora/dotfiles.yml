@@ -14,15 +14,18 @@
             state=link
 
     - name: zshrc symlink
-      file: path={{ ansible_user_dir }}/.zsh/config.zsh
-            src={{ ansible_user_dir }}/.zshrc
+      file: path={{ ansible_user_dir }}/.zshrc
+            src={{ ansible_user_dir }}/.zsh/config.zsh
+            state=link
 
     - name: zshenv symlink
-      file: path={{ ansible_user_dir }}/.zsh/env.zsh
-            src={{ ansible_user_dir }}/.zshenv
+      file: path={{ ansible_user_dir }}/.zshenv
+            src={{ ansible_user_dir }}/.zsh/env.zsh
+            state=link
 
     - name: zshprofile symlink
-      file: path={{ ansible_user_dir }}/.zsh/env.zsh
-            src={{ ansible_user_dir }}/.zshprofile
+      file: path={{ ansible_user_dir }}/.zshprofile
+            src={{ ansible_user_dir }}/.zsh/env.zsh
+            state=link
 
 
