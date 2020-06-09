@@ -30,4 +30,4 @@
 
     - name: set zsh as default shell
       become: yes
-      shell: "chsh -s /usr/bin/zsh"
+      shell: /usr/bin/zsh
