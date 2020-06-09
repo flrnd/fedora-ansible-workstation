@@ -1,8 +1,0 @@
----
-- name: Run all the local playbooks
-  hosts: localhost
-
-- import_playbook: packages.yml
-- import_playbook: vscode.yml
-- import_playbook: extensions.yml
-- import_playbook: prezto.yml
