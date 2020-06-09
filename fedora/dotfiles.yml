@@ -1,28 +1,28 @@
 ---
 - name: Setup dotfiles
   hosts: localhost
-  become_user: "{{ ansible_user }}"
+  become_user: "{{ ansible_user_id }}"
   tasks:
     - name: clone dotfiles repository
       git: repo=https://github.com/flrnd/dotfiles.git
-           dest=/home/{{ ansible_user }}/.dotfiles
+           dest=/home/{{ ansible_user_id }}/.dotfiles
            update=no
 
     - name: create zsh symlink
-      file: path=/home/{{ ansible_user }}/.zsh
+      file: path=/home/{{ ansible_user_id }}/.zsh
             src=/home/.dotfiles/zsh
             state=link
 
     - name: zshrc symlink
-      file: path=/home/{{ ansible_user }}/.zsh/config.zsh
-            src=/home/{{ ansible_user }}/.zshrc
+      file: path=/home/{{ ansible_user_id }}/.zsh/config.zsh
+            src=/home/{{ ansible_user_id }}/.zshrc
 
     - name: zshenv symlink
-      file: path=/home/{{ ansible_user }}/.zsh/env.zsh
-            src=/home/{{ ansible_user }}/.zshenv
+      file: path=/home/{{ ansible_user_id }}/.zsh/env.zsh
+            src=/home/{{ ansible_user_id }}/.zshenv
 
     - name: zshprofile symlink
-      file: path=/home/{{ ansible_user }}/.zsh/env.zsh
-            src=/home/{{ ansible_user }}/.zshprofile
+      file: path=/home/{{ ansible_user_id }}/.zsh/env.zsh
+            src=/home/{{ ansible_user_id }}/.zshprofile
 
 
