@@ -28,6 +28,4 @@
             src={{ ansible_user_dir }}/.zsh/env.zsh
             state=link
 
-    - name: set zsh as default shell
-      become: yes
-      shell: /usr/bin/zsh
+

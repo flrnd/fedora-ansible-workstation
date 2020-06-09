@@ -34,3 +34,7 @@
         - xclip
         - zsh
 
+    - name: set zsh as default shell
+      user:
+        name: "{{ ansible_user_id }}"
+        shell: /usr/bin/zsh
