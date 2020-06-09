@@ -1,6 +1,8 @@
-# Workstation ansible playbooks
+# Fedora Linux Workstation ansible playbooks
+A collection of personal playbooks to customize a fresh Fedora install.
+You need ansible [installed in your local machine](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html "Official ansible installation guide").
 
-Need ansible [installed in your local machine](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html "Official ansible installation guide").
+Feel free to try it in a virtual machine before using it in your own workstation.
 
 #### Command line
 
@@ -8,7 +10,7 @@ Need ansible [installed in your local machine](https://docs.ansible.com/ansible/
 $ ansible-pull -u $(whoami) -K -U https://github.com/flrnd/ansible.git
 ```
 
-###### Testing:
+#### Test
 
 ```shell
 $ ansible-pull -u $(whoami) -K -U https://github.com/flrnd/ansible.git --check
