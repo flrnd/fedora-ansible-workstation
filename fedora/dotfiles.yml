@@ -5,24 +5,24 @@
   tasks:
     - name: clone dotfiles repository
       git: repo=https://github.com/flrnd/dotfiles.git
-           dest=/home/{{ ansible_user_id }}/.dotfiles
+           dest={{ ansible_user_dir }}/.dotfiles
            update=no
 
     - name: create zsh symlink
-      file: path=/home/{{ ansible_user_id }}/.zsh
-            src=/home/.dotfiles/zsh
+      file: path={{ ansible_user_dir }}/.zsh
+            src={{ ansible_user_dir }}/.dotfiles/zsh
             state=link
 
     - name: zshrc symlink
-      file: path=/home/{{ ansible_user_id }}/.zsh/config.zsh
-            src=/home/{{ ansible_user_id }}/.zshrc
+      file: path={{ ansible_user_dir }}/.zsh/config.zsh
+            src={{ ansible_user_dir }}/.zshrc
 
     - name: zshenv symlink
-      file: path=/home/{{ ansible_user_id }}/.zsh/env.zsh
-            src=/home/{{ ansible_user_id }}/.zshenv
+      file: path={{ ansible_user_dir }}/.zsh/env.zsh
+            src={{ ansible_user_dir }}/.zshenv
 
     - name: zshprofile symlink
-      file: path=/home/{{ ansible_user_id }}/.zsh/env.zsh
-            src=/home/{{ ansible_user_id }}/.zshprofile
+      file: path={{ ansible_user_dir }}/.zsh/env.zsh
+            src={{ ansible_user_dir }}/.zshprofile
 
 
