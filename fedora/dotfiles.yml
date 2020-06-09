@@ -7,3 +7,22 @@
       git: repo=https://github.com/flrnd/dotfiles.git
            dest=/home/{{ username }}/.dotfiles
            update=no
+
+    - name: create zsh symlink
+      file: path=/home/{{ username }}/.zsh
+            src=/home/.dotfiles/zsh
+            state=link
+
+    - name: zshrc symlink
+      file: path=/home/{{ username }}/.zsh/config.zsh
+            src=/home/{{ username }}/.zshrc
+
+    - name: zshenv symlink
+            path=/home/{{ username }}/.zsh/env.zsh
+            src=/home/{{ username }}/.zshenv
+
+    - name: zshprofile symlink
+            path=/home/{{ username }}/.zsh/env.zsh
+            src=/home/{{ username }}/.zshprofile
+
+
