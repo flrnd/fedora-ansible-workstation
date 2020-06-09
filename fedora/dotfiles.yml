@@ -1,0 +1,9 @@
+---
+- name: Setup dotfiles
+  hosts: localhost
+  become_user: "{{ username }}"
+  tasks:
+    - name: clone dotfiles repository
+      git: repo=https://github.com/flrnd/dotfiles.git
+           dest=/home/{{ username }}/.dotfiles
+           update=no
