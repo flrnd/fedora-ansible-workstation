@@ -1,7 +1,7 @@
 ---
 - name: Install packages
   hosts: localhost
-  become: True
+  become: yes
   tasks:
     - name: upgrade all packages
       package:
