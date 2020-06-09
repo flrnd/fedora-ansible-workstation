@@ -13,23 +13,16 @@
                state=present
       with_items:
         - ack
-        - autoconf
-        - automake
-        - bison
-        - bzip2
-        - chrome-gnome-shell
         - curl
-        - dep
-        - gcc-c++
         - git
         - htop
-        - libtool
-        - libselinux-python
-        - llvm-static
         - make
-        - rxvt-unicode-256color
-        - tmux
-        - tree
         - util-linux-user
-        - vim
-        - copyq
+        - neovim
+        - zsh
+        - bat
+        - ripgrep
+        - fd-find
+        - ncdu
+        - tig
+        - tilix
