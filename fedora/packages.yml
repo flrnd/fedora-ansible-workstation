@@ -13,16 +13,24 @@
                state=present
       with_items:
         - ack
+        - bat
         - curl
         - git
+        - gnome-tweaks
         - htop
-        - make
-        - util-linux-user
-        - neovim
-        - zsh
-        - bat
-        - ripgrep
+        - httpie
         - fd-find
+        - make
         - ncdu
+        - neovim
+        - pass
+        - qrencode
+        - ranger
+        - ripgrep
         - tig
         - tilix
+        - util-linux-user
+        - virt-manager
+        - xclip
+        - zsh
+
