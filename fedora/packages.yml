@@ -33,8 +33,3 @@
         - virt-manager
         - xclip
         - zsh
-
-    - name: set zsh as default shell
-      shell: "usermod --shell /usr/bin/zsh {{ ansible_user_id }}"
-
-    - debug: var=ansible_user_id
