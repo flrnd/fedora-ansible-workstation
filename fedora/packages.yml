@@ -35,5 +35,6 @@
         - zsh
 
     - name: set zsh as default shell
-      become_user: "{{ ansible_user_id }}"
       shell: "usermod --shell /usr/bin/zsh {{ ansible_user_id }}"
+
+    - debug: var=ansible_user_id
