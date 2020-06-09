@@ -1,8 +1,15 @@
-# Fedora Linux Workstation ansible playbooks
-A collection of personal playbooks to customize a fresh Fedora install.
-You need to install [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html "Official ansible installation guide") to run these playbooks.
+# Fedora Linux Workstation ansible playbook
+Personal playbook for fresh Fedora installs.
 
-Feel free to try it in a virtual machine before using it in your own workstation.
+## Introduction
+
+I started using ansible few years ago because I hate repeating some tasks every time I have to setup a new Workstation.
+With ansible I can provision a Workstation ready to my daily needs:
+
+* Install a few packages, like tilix, ripgrep, bat, virt-manager, etc.
+* Set my default shell to zsh and clone my [dotfiles](https://github.com/flrnd/dotfiles).
+* Activate RPM Fusion repositories and install ffmpeg and some non-free goodies.
+* Install Visual Studio Code.
 
 #### Command line
 
