@@ -27,10 +27,3 @@
       file: path={{ ansible_user_dir }}/.zshprofile
             src={{ ansible_user_dir }}/.zsh/env.zsh
             state=link
-
-    - name: set zsh as default shell
-      become: yes
-      shell: "usermod --shell /usr/bin/zsh {{ ansible_user_id }}"
-
-    - debug: var=ansible_user_id
-
