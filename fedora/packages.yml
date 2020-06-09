@@ -1,13 +1,13 @@
 ---
 - name: Install packages
   hosts: localhost
-  sudo: no
+  become: no
   tasks:
     - name: upgrade all packages
       package:
         name: "*"
         state: latest
-      sudo: yes
+      become: yes
 
     - name: install packages
       package: name={{ item }}
@@ -34,10 +34,10 @@
         - virt-manager
         - xclip
         - zsh
-      sudo: yes
+      become: yes
 
     - name: set zsh as default shell
       command: "usermod --shell /usr/bin/zsh {{ ansible_user_id }}"
-      sudo: yes
+      become: yes
 
     - debug: var=ansible_user_id
