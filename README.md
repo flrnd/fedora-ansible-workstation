@@ -11,7 +11,6 @@ With ansible I can provision a Workstation ready to my daily needs:
 * Set my default shell to ~~zsh~~ fish and clone my [dotfiles](https://github.com/flrnd/dotfiles).
 * ~~Activate RPM Fusion repositories and install ffmpeg and some non-free goodies~~ (Deprecated, you can enable third party repos).
 * Install Visual Studio Code.
-* Configure my .dotfiles
 * Clone forgit
 
 ### Usage example
