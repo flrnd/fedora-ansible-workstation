@@ -1,43 +1,66 @@
-- name: Install packages
+---
+- name: Configure Fedora packages and shell
   hosts: localhost
+  connection: local
+  gather_facts: yes
   become: no
+
+  vars:
+    packages_to_install:
+      - bat
+      - curl
+      - distrobox
+      - fd-find
+      - fish
+      - fzf
+      - htop
+      - httpie
+      - make
+      - ncdu
+      - neovim
+      - podman
+      - podman-compose
+      - ripgrep
+      - tig
+      - tilix
+      - util-linux-user
+      - virt-manager
+      - xclip
+
+    default_shell: /usr/bin/fish
+
   tasks:
-    - name: upgrade all packages
-      package:
+    - name: Upgrade all packages
+      ansible.builtin.dnf:
         name: "*"
         state: latest
+        update_cache: yes
       become: yes
+      tags: ['packages', 'upgrade']
 
-    - name: install packages
-      package: name={{ item }}
-        state=present
-      with_items:
-        - bat
-        - curl
-        - fish
-        - fzf
-        - git
-        - gnome-tweaks
-        - htop
-        - httpie
-        - jless
-        - fd-find
-        - make
-        - ncdu
-        - neovim
-        - podman
-        - podman-compose
-        - ripgrep
-        - tig
-        - tilix
-        - util-linux-user
-        - virt-manager
-        - xclip
-        - zsh
+    - name: Install required packages
+      ansible.builtin.dnf:
+        name: "{{ packages_to_install }}"
+        state: present
       become: yes
+      tags: ['packages', 'install']
 
-    - name: set zsh as default shell
-      command: "usermod --shell /usr/bin/zsh {{ ansible_user_id }}"
+    - name: Check if fish is already the default shell
+      ansible.builtin.getent:
+        database: passwd
+        key: "{{ ansible_user_id }}"
+      register: user_info
+      tags: ['shell']
+
+    - name: Set fish as default shell for current user
+      ansible.builtin.user:
+        name: "{{ ansible_user_id }}"
+        shell: "{{ default_shell }}"
       become: yes
+      when: user_info.ansible_facts.getent_passwd[ansible_user_id][5] != default_shell
+      tags: ['shell']
 
-    - debug: var=ansible_user_id
+    - name: Display current user information
+      ansible.builtin.debug:
+        msg: "Configured user: {{ ansible_user_id }} with shell: {{ default_shell }}"
+      tags: ['info']

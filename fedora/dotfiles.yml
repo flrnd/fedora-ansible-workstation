@@ -1,28 +1,58 @@
-- name: Setup dotfiles
+---
+- name: Manage dotfiles configuration
   hosts: localhost
-  become_user: "{{ ansible_user_id }}"
+  connection: local
+  gather_facts: yes
+  become: no
+
+  vars:
+    dotfiles_repo: "{{ dotfiles_repository | default('git@github.com:flrnd/dotfiles.git') }}"
+    dotfiles_dest: "{{ ansible_env.HOME }}/.dotfiles"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+
+    config_symlinks:
+      - src: "{{ dotfiles_dest }}/nvim"
+        dest: "{{ config_dir }}/nvim"
+        name: "Neovim"
+      - src: "{{ dotfiles_dest }}/fish"
+        dest: "{{ config_dir }}/fish"
+        name: "Fish Shell"
+
   tasks:
-    - name: clone dotfiles repository
-      git: repo=https://github.com/flrnd/dotfiles.git
-           dest={{ ansible_user_dir }}/.dotfiles
-           update=no
+    - name: Ensure config directory exists
+      file:
+        path: "{{ config_dir }}"
+        state: directory
+        mode: '0755'
+      tags: ['dotfiles','setup']
 
-    - name: create zsh symlink
-      file: path={{ ansible_user_dir }}/.zsh
-            src={{ ansible_user_dir }}/.dotfiles/zsh
-            state=link
+    - name: Clone or update dotfiles repository via SSH
+      git:
+        repo: "{{ dotfiles_repo }}"
+        dest: "{{ dotfiles_dest }}"
+        version: HEAD
+        force: yes
+        accept_hostkey: yes
+      register: git_result
+      tags: ['dotfiles', 'clone_update']
 
-    - name: zshrc symlink
-      file: path={{ ansible_user_dir }}/.zshrc
-            src={{ ansible_user_dir }}/.zsh/config.zsh
-            state=link
+    - name: Create symlinks for dotfiles
+      file:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        state: link
+        force: yes
+      loop: "{{ config_symlinks }}"
+      loop_control:
+        loop_var: item
+      tags: ['dotfiles', 'symlink']
 
-    - name: zshenv symlink
-      file: path={{ ansible_user_dir }}/.zshenv
-            src={{ ansible_user_dir }}/.zsh/env.zsh
-            state=link
-
-    - name: zshprofile symlink
-      file: path={{ ansible_user_dir }}/.zshprofile
-            src={{ ansible_user_dir }}/.zsh/env.zsh
-            state=link
+    - name: Display summary
+      debug:
+        msg: |
+          Dotfiles {{ git_result.changed | ternary('cloned', 'updated') }} at {{ dotfiles_dest }}.
+          Created symlinks for:
+          {% for item in config_symlinks %}
+            - {{ item.name }}: {{ item.dest }} -> {{ item.src }}
+          {% endfor %}
+      tags: ['dotfiles', 'info']

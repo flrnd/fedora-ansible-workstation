@@ -1,0 +1,38 @@
+---
+- name: Clone forgit repository
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  become: no
+
+  vars:
+    forgit_repo: "https://github.com/wfxr/forgit.git"
+    forgit_parent: "{{ ansible_env.HOME }}/.local/share"
+    forgit_dest: "{{ forgit_parent }}/forgit"
+
+  tasks:
+    - name: Ensure forgit parent directory exists
+      file:
+        path: "{{ forgit_parent }}"
+        state: directory
+        mode: '0755'
+      tags: ['forgit']
+
+    - name: Clone the repository
+      git:
+        repo: "{{ forgit_repo }}"
+        dest: "{{ forgit_dest }}"
+        version: HEAD
+        force: yes
+        accept_hostkey: yes
+      register: forgit_result
+      tags: ['forgit']
+
+    - name: Display forgit install summary
+      debug:
+        msg: |
+          Forgit {{ forgit_result.changed | ternary('installed', 'updated') }} at {{ forgit_dest }}.
+          To use forgit, add the following to your shell config:
+            eval "$(~/.local/share/forgit/forgit.fish)"  # for Fish shell
+            # or source ~/.local/share/forgit/forgit.sh  # for Bash/Zsh
+      tags: ['forgit', 'info']

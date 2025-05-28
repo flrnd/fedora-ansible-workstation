@@ -1,23 +1,79 @@
-- name: Install Visual Studio Code
+# fedora/vscode.yml
+---
+- name: Install Visual Studio Code on Fedora
   hosts: localhost
-  become: yes
+  connection: local
+  gather_facts: yes
+  become: no
+
+  vars:
+    microsoft_repo_url: "https://packages.microsoft.com/yumrepos/vscode"
+    microsoft_gpg_key: "https://packages.microsoft.com/keys/microsoft.asc"
+    vscode_repo_name: "VisualStudioCode"
+    vscode_package_name: "code"
+
   tasks:
-    - name: set up vscode repo
-      yum_repository:
-        baseurl: https://packages.microsoft.com/yumrepos/vscode
-        description: Microsoft VS Code Repo
+    - name: Import Microsoft GPG key
+      ansible.builtin.rpm_key:
+        key: "{{ microsoft_gpg_key }}"
+        state: present
+      become: yes
+      tags: ['vscode', 'repo', 'security']
+
+    - name: Add Microsoft Visual Studio Code repository
+      ansible.builtin.yum_repository:
+        name: "{{ vscode_repo_name }}"
+        description: "Microsoft VS Code Repository"
+        baseurl: "{{ microsoft_repo_url }}"
         enabled: yes
         gpgcheck: yes
-        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-        name: VisualStudioCode
+        gpgkey: "{{ microsoft_gpg_key }}"
+        repo_gpgcheck: yes
+        metadata_expire: 300
+      become: yes
+      tags: ['vscode', 'repo']
 
-    - name: Upgrade all packages
-      package:
-        name: "*"
-        state: latest
+    - name: Check if VS Code is already installed
+      ansible.builtin.command:
+        cmd: "rpm -q {{ vscode_package_name }}"
+      register: vscode_check
+      failed_when: false
+      changed_when: false
+      tags: ['vscode', 'check']
 
-    - name: Install vs code
-      package:
-        name: code
+    - name: Install Visual Studio Code
+      ansible.builtin.dnf:
+        name: "{{ vscode_package_name }}"
         state: present
+        update_cache: yes
+      become: yes
+      when: vscode_check.rc != 0
+      register: vscode_installation
+      tags: ['vscode', 'install']
 
+    - name: Verify VS Code installation
+      ansible.builtin.command:
+        cmd: "which {{ vscode_package_name }}"
+      register: vscode_binary_check
+      changed_when: false
+      failed_when: vscode_binary_check.rc != 0
+      tags: ['vscode', 'verify']
+
+    - name: Display installation status
+      ansible.builtin.debug:
+        msg: >
+          {% if vscode_installation.changed | default(false) %}
+            Visual Studio Code has been successfully installed.
+          {% elif vscode_check.rc == 0 %}
+            Visual Studio Code was already installed.
+          {% else %}
+            Visual Studio Code installation status unknown.
+          {% endif %}
+            Binary location: {{ vscode_binary_check.stdout | default('Not found') }}
+      tags: ['vscode', 'info']
+
+  handlers:
+    - name: Update package cache
+      ansible.builtin.dnf:
+        update_cache: yes
+      become: yes
