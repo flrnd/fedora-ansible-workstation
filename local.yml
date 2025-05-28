@@ -1,7 +1,14 @@
 ---
 - name: Run all the local playbooks
   hosts: localhost
+  connection: local
+  gather_facts: yes
 
-- import_playbook: ./fedora/packages.yml
-- import_playbook: ./fedora/vscode.yml
-- import_playbook: ./fedora/dotfiles.yml
+- name: Import Fedora package configuration
+  import_playbook: ./fedora/packages.yml
+- name: Import VSCode installation
+  import_playbook: ./fedora/vscode.yml
+- name: Import dotfiles configuration
+  import_playbook: ./fedora/dotfiles.yml
+- name: Import forgit configuration
+  import_playbook: ./fedora/forgit.yml
