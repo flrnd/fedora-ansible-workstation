@@ -1,3 +1,15 @@
 ---
-  username: use_ansible_user_id_instead_of_this
+# Global variables for all hosts
+ansible_python_interpreter: "{{ ansible_playbook_python }}"
 
+# User configuration
+configure_user: "{{ ansible_user_id }}"
+
+# Package management
+update_cache_valid_time: 3600  # 1 hour
+
+# Shell configuration
+preferred_shells:
+  - /usr/bin/zsh
+  - /usr/bin/fish
+  - /usr/bin/bash
