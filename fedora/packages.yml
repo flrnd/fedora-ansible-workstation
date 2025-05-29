@@ -13,11 +13,13 @@
       - fd-find
       - fish
       - fzf
+      - gcc-c++
       - htop
       - httpie
       - make
       - ncdu
       - neovim
+      - p7zip
       - podman
       - podman-compose
       - ripgrep
